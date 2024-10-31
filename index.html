@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía POO Python</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8F00FF);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Colores del arcoíris para los botones del menú */
+        .menu-item:nth-child(1) { background: #FF0000; }
+        .menu-item:nth-child(2) { background: #FF7F00; }
+        .menu-item:nth-child(3) { background: #FFFF00; color: #333; }
+        .menu-item:nth-child(4) { background: #00FF00; }
+        .menu-item:nth-child(5) { background: #0000FF; }
+        .menu-item:nth-child(6) { background: #4B0082; }
+        .menu-item:nth-child(7) { background: #8F00FF; }
+        .menu-item:nth-child(8) { background: #FF1493; }
+        .menu-item:nth-child(9) { background: #00FFFF; color: #333; }
+        .menu-item:nth-child(10) { background: #FF4500; }
+        .menu-item:nth-child(11) { background: #32CD32; }
+        .menu-item:nth-child(12) { background: #DA70D6; }
+        .menu-item:nth-child(13) { background: #1E90FF; }
+        .menu-item:nth-child(14) { background: #FFD700; color: #333; }
+        .menu-item:nth-child(15) { background: #FF69B4; }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .example-code {
+            background: #1E1E1E;
+            color: #D4D4D4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+        }
+
+        .concept-title {
+            color: #333;
+            margin: 20px 0 10px 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .output {
+            background: #F8F8F8;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            margin: 10px 0;
+        }
+
+        .note {
+            background: #FFF3E0;
+            padding: 10px;
+            border-left: 4px solid #FF9800;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Programación Orientada a Objetos en Python</h1>
+            <p>Una guía completa con ejemplos prácticos</p>
+        </header>
+
+        <div class="menu">
+            <button class="menu-item" onclick="showContent('clases')">Clases</button>
+            <button class="menu-item" onclick="showContent('objetos')">Objetos</button>
+            <button class="menu-item" onclick="showContent('atributos')">Atributos</button>
+            <button class="menu-item" onclick="showContent('metodos')">Métodos</button>
+            <button class="menu-item" onclick="showContent('encapsulamiento')">Encapsulamiento</button>
+            <button class="menu-item" onclick="showContent('herencia')">Herencia</button>
+            <button class="menu-item" onclick="showContent('polimorfismo')">Polimorfismo</button>
+            <button class="menu-item" onclick="showContent('abstraccion')">Abstracción</button>
+            <button class="menu-item" onclick="showContent('interfaces')">Interfaces</button>
+            <button class="menu-item" onclick="showContent('composicion')">Composición</button>
+            <button class="menu-item" onclick="showContent('agregacion')">Agregación</button>
+            <button class="menu-item" onclick="showContent('constructores')">Constructores</button>
+            <button class="menu-item" onclick="showContent('estaticos')">Métodos Estáticos</button>
+            <button class="menu-item" onclick="showContent('clase')">Métodos de Clase</button>
+            <button class="menu-item" onclick="showContent('sobrecarga')">Sobrecarga</button>
+        </div>
+
+        <!-- Sección de Clases -->
+        <div id="clases" class="content-section active">
+            <h2 class="concept-title">Clases en Python</h2>
+            <p class="concept-description">
+                Las clases son plantillas para crear objetos. Definen atributos y métodos que los objetos tendrán.
+            </p>
+            <div class="example-code">
+# Definición de una clase básica
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    
+    def saludar(self):
+        return f"Hola, soy {self.nombre} y tengo {self.edad} años"
+
+# Creando una instancia de la clase
+persona1 = Persona("Ana", 25)
+print(persona1.saludar())
+            </div>
+            <div class="output">
+                Salida: Hola, soy Ana y tengo 25 años
+            </div>
+            <div class="note">
+                Nota: La clase Persona define un template básico con atributos (nombre, edad) y un método (saludar).
+            </div>
+        </div>
+
+        <!-- Sección de Objetos -->
+        <div id="objetos" class="content-section">
+            <h2 class="concept-title">Objetos en Python</h2>
+            <p class="concept-description">
+                Los objetos son instancias de clases. Cada objeto tiene sus propios valores de atributos.
+            </p>
+            <div class="example-code">
+# Creando múltiples objetos de la misma clase
+class Auto:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+    
+    def describir(self):
+        return f"Auto {self.marca} modelo {self.modelo}"
+
+# Creando diferentes instancias
+auto1 = Auto("Toyota", "Corolla")
+auto2 = Auto("Honda", "Civic")
+
+print(auto1.describir())
+print(auto2.describir())
+            </div>
+            <div class="output">
+                Auto Toyota modelo Corolla
+                Auto Honda modelo Civic
+            </div>
+        </div>
+
+        <!-- Sección de Herencia -->
+        <div id="herencia" class="content-section">
+            <h2 class="concept-title">Herencia en Python</h2>
+            <p class="concept-description">
+                La herencia permite que una clase herede atributos y métodos de otra clase.
+            </p>
+            <div class="example-code">
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+    
+    def hacer_sonido(self):
+        pass
+
+class Perro(Animal):
+    def hacer_sonido(self):
+        return f"{self.nombre} dice: ¡Guau!"
+
+class Gato(Animal):
+    def hacer_sonido(self):
+        return f"{self.nombre} dice: ¡Miau!"
+
+perro = Perro("Bobby")
+gato = Gato("Michi")
+
+print(perro.hacer_sonido())
+print(gato.hacer_sonido())
+            </div>
+            <div class="output">
+                Bobby dice: ¡Guau!
+                Michi dice: ¡Miau!
+            </div>
+        </div>
+
+        <!-- Resto de secciones similares... -->
+
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(contentId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
